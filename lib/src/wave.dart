@@ -29,6 +29,7 @@ class _WaveState extends State<Wave> with SingleTickerProviderStateMixin {
       vsync: this,
       duration: Duration(seconds: 2),
     );
+    _animationController.repeat();
   }
 
   @override
@@ -91,7 +92,7 @@ class _WaveClipper extends CustomClipper<Path> {
   List<Offset> _generateHorizontalWavePath(Size size) {
     final waveList = <Offset>[];
     for (int i = -2; i <= size.height.toInt() + 2; i++) {
-      final waveHeight = (size.width / 20);
+      final waveHeight = (size.width / size.width);
       final dx = math.sin((animationValue * 360 - i) % 360 * (math.pi / 180)) *
               waveHeight +
           (size.width * value!);
@@ -103,7 +104,7 @@ class _WaveClipper extends CustomClipper<Path> {
   List<Offset> _generateVerticalWavePath(Size size) {
     final waveList = <Offset>[];
     for (int i = -2; i <= size.width.toInt() + 2; i++) {
-      final waveHeight = (size.height / 20);
+      final waveHeight = (size.height / size.height);
       final dy = math.sin((animationValue * 360 - i) % 360 * (math.pi / 180)) *
               waveHeight +
           (size.height - (size.height * value!));
